@@ -1,0 +1,17 @@
+{
+    "name": "joaoa/testes",
+    "autoload": {
+        "psr-4": {
+            "Joaoa\\Testes\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "João Altafini",
+            "email": "joao.batista16@fatec.sp.gov.br"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.10"
+    }
+}

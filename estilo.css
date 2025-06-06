@@ -1,0 +1,269 @@
+
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        #cps-header {
+            background-color: #fff;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cps-header__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cps-header__logo {
+            text-align: center;
+        }
+
+        .cps-header__logo img {
+            max-width: 400px;
+            height: auto;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--fatec-azul);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+        }
+
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .menu-button {
+            background: var(--fatec-azul);
+            color: white;
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .menu-button:hover {
+            background: var(--fatec-vermelho);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .cps-header__logo img {
+                max-width: 300px;
+            }
+
+            .user-type {
+                position: static;
+                margin: 20px auto;
+                max-width: 200px;
+                text-align: center;
+            }
+        }
+
+
+
+
+
+        /* Estilo geral para limpar espaçamentos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Linha abaixo */
+
+hr {
+    border-style: solid;
+    border-width: 2px;     /* Espessura da linha */
+    border-color: #ccc;     /* Cor da linha */
+    width: 100%;     /* Largura da linha (100% do contêiner) */
+}
+
+/* Fundo cinza claro da página */
+body {
+    background-color: rgb(88, 86, 86);
+}
+
+/* Cabeçalho com os dois logos */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;    /* 20px topo/baixo, 40px esquerda/direita */
+    background-color: white;
+}
+
+.header img {
+    height: 60px;
+}
+
+/* Área principal da página com login e imagens */
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Caixa do login */
+.login-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 35px;
+    margin-right: 120px;
+}
+
+.login-box h2 {
+    color: #c8102e;
+    /* Vermelho Fatec */
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.form-group a {
+    font-size: 14px;
+    color: #c8102e;
+    text-decoration: none;
+}
+
+.form-group a:hover {
+    text-decoration: underline;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #c8102e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a40d24;
+}
+
+/* Banner de capa com imagem de fundo */
+.banner {
+    position: relative;
+    width: 100%;
+    max-height: 200px; /* Ajuste conforme necessário */
+    
+}
+
+.banner img {
+    position: absolute; /* Posição absoluta para as imagens */
+    width: 90%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Texto sobreposto no banner */
+
+.welcome-text {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    margin-left: 200px;
+}
+
+.footer {
+    background-color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 40px;
+    color: #333;
+    font-size: 14px;
+}
+
+
+/* RESPONSIVIDADE PARA CELULAR */
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .images-section {
+        max-width: 100%;
+        order: 1;
+    }
+
+    .login-box {
+        max-width: 100%;
+        order: 2;
+    }
+
+    .welcome-text {
+        font-size: 18px;
+        top: 20%;
+    }
+}
