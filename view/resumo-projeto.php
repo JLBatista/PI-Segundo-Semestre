@@ -81,6 +81,7 @@ if (isset($_GET['success'])) {
     
 <!-- Cabeçalho -->
     <div class="header">
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
         <img src="../assets/logo-fatec_itapira.png" alt="Logo Fatec Itapira">
         <h1>Portal do Diretor</h1>
         <img src="../assets/hora.png" alt="Logo Hora+" style="height: 50px;">

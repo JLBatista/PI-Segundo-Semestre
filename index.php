@@ -22,6 +22,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['tipo_usuario'])) {
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <meta charset="UTF-8">
     <title>Tela de Login</title>
     <link rel="stylesheet" href="estilo.css">
