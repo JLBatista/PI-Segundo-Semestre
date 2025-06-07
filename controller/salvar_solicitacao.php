@@ -38,6 +38,9 @@ $recursos = $_POST['recursos'] ?? null;
 $resultado = $_POST['resultado'] ?? null;
 $metodologia = $_POST['metodologia'] ?? null;
 
+// Salva os dados do formulário na sessão para repopular em caso de erro
+$_SESSION['form_data'] = $_POST;
+
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=modelo", "root", "");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -61,7 +64,7 @@ try {
             $fimMin = strtotime($fim);
 
             if ($inicioMin >= $fimMin) {
-                header("Location: ../view/dashboard_professor.php?erro=horario_invalido&detalhe=Inicio_maior_que_fim_em_$dia");
+                header("Location: ../view/formulario.php?msg=erro&motivo=horario_invalido_$dia");
                 exit;
             }
 
@@ -71,7 +74,7 @@ try {
                 ($dia !== 'sabado' && $inicio >= '19:00' && $fim <= '22:30') ||
                 ($dia === 'sabado' && $inicio >= '07:15' && $fim <= '12:50')
             ) {
-                header("Location: ../view/dashboard_professor.php?erro=conflito_aula_regular&detalhe=$dia");
+                header("Location: ../view/formulario.php?msg=erro&motivo=conflito_aula_regular&dia=$dia");
                 exit;
             }
         }
@@ -80,7 +83,7 @@ try {
         $total_dia = $minutos_aula + $minutos_hae;
 
         if ($total_dia > 480) {
-            header("Location: ../view/dashboard_professor.php?erro=excesso_dia&detalhe=$dia");
+            header("Location: ../view/formulario.php?msg=erro&motivo=limite_diario_$dia");
             exit;
         }
 
@@ -89,7 +92,7 @@ try {
 
     $totalAulasMin = array_sum($cargaAulasPorDia);
     if (($totalAulasMin + $totalMinutosSemana) > 2640) {
-        header("Location: ../view/dashboard_professor.php?erro=excesso_semana");
+        header("Location: ../view/formulario.php?msg=erro&motivo=limite_semanal");
         exit;
     }
 
@@ -132,12 +135,15 @@ try {
         ':id_professor' => $professor_id
     ]);
 
+    // Limpa os dados do formulário da sessão após sucesso
+    unset($_SESSION['form_data']);
+
     // Tudo certo → redireciona com parâmetro de sucesso
     header("Location: ../view/dashboard_professor.php?sucesso=1");
     exit;
 
 } catch (PDOException $e) {
     $erro = urlencode($e->getMessage());
-    header("Location: ../view/dashboard_professor.php?erro=bd&detalhe=$erro");
+    header("Location: ../view/formulario.php?msg=erro&motivo=bd&detalhe=$erro");
     exit;
 }

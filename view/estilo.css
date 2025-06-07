@@ -16,7 +16,9 @@
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
     --fatec-azul: #003e7e;
+    
 }
+
 
 body {
     background-color: var(--light-gray);
@@ -82,13 +84,14 @@ hr {
 
 /* Área principal */
 .main {
-    flex: 1;
+    flex: 1 0 auto;
     padding: 3rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
     width: 100%;
 }
+
 
 .main h1 {
     color: var(--primary-color);
@@ -190,9 +193,11 @@ hr {
     background-color: var(--secondary-color);
     color: var(--white);
     text-align: center;
-    padding: 1.5rem;
-    margin-top: auto;
+    padding: 1.5rem 0;
+    width: 100%;
     font-size: 0.9rem;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+    flex-shrink: 0;
 }
 
 /* Responsividade */
