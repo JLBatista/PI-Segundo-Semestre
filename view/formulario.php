@@ -43,9 +43,22 @@ if (isset($_GET['msg']) && $_GET['msg'] == 'erro') {
 
     $mensagem = $mensagens[$motivo] ?? 'Erro desconhecido.';
     echo "<div style='color: red; font-weight: bold;'>$mensagem</div>";
+$mensagens = [
+    'limite_semanal' => 'O limite semanal de 44h foi excedido.',
+    'horario_proibido_segunda' => 'HAE não pode ser solicitada na segunda durante o horário de aula (19:00 às 22:30).',
+    // ... adicione as outras mensagens conforme sua necessidade
+];
+
+$erroMensagem = null;
+if (isset($_GET['msg']) && $_GET['msg'] == 'erro') {
+    $motivo = $_GET['motivo'] ?? 'desconhecido';
+    $erroMensagem = $mensagens[$motivo] ?? 'Erro desconhecido.';
+}
 }
 
 ?>
+
+
 </html><!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -54,6 +67,9 @@ if (isset($_GET['msg']) && $_GET['msg'] == 'erro') {
     <!-- Links do cabeçalho da Fatec -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/fa068c530f.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <title>Dashboard HAE</title>
    <link rel="stylesheet" href="estilo.css">
 
@@ -175,6 +191,7 @@ if (isset($_GET['msg']) && $_GET['msg'] == 'erro') {
 
 
             <form action="../controller/salvar_solicitacao.php" method="POST" id="form-inscricao" class="needs-validation" novalidate>
+
     
     <!-- Bem-vindo -->
     <div class="mb-3">
@@ -308,18 +325,72 @@ if (isset($_GET['msg']) && $_GET['msg'] == 'erro') {
       <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
     </div>
 
-  </form>
-        </form>
+  <script>
+document.getElementById('form-inscricao').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'success') {
+            window.location.href = 'dashboard_professor.php?sucesso=1';
+        } else {
+            alert(data.message); // ou usar um toast Bootstrap
+        }
+    })
+    .catch(err => {
+        alert('Erro ao enviar solicitação.');
+        console.error(err);
+    });
+});
+</script>
+
+
     </div>
 </div>
     </div>
     
+    <!-- Toast container -->
+<div id="toastContainer" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+    <div id="errorToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body" id="toastMessage">
+                <!-- Mensagem de erro será inserida aqui -->
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
+        </div>
+    </div>
+</div>
 
         <!-- Scripts necessários -->
           <footer class="footer">
         <p>© 2024 Fatec Itapira - Todos os direitos reservados</p>
     </footer>
     <!-- Adicione após os outros scripts -->
+     <!-- Bootstrap JS Bundle (inclui Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    function showToast(message) {
+        const toastEl = document.getElementById('errorToast');
+        const toastMessage = document.getElementById('toastMessage');
+        toastMessage.textContent = message;
+        const toast = new bootstrap.Toast(toastEl, { delay: 5000 });
+        toast.show();
+    }
+
+    <?php if ($erroMensagem): ?>
+        showToast("<?php echo addslashes($erroMensagem); ?>");
+    <?php endif; ?>
+});
+</script>
+
 </body>
 
 

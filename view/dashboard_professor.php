@@ -64,6 +64,34 @@ $nome = $_SESSION['nome'];
 
     </main>
 
+
+    <!-- TOAST (popup) Bootstrap -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toastSucesso" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Solicitação enviada com sucesso!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
+        </div>
+    </div>
+</div>
+
+<!-- JS do Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Verifica se veio o parâmetro sucesso na URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const sucesso = urlParams.get('sucesso');
+
+    if (sucesso === '1') {
+        const toastElement = document.getElementById('toastSucesso');
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    }
+</script>
+
     <!-- Rodapé -->
     <footer class="footer">
         <p>© 2024 Fatec Itapira - Todos os direitos reservados</p>
