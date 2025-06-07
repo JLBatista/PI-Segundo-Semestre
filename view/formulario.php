@@ -151,7 +151,7 @@ unset($_SESSION['form_data']);
                     'horario_invalido_quinta' => 'Horário inválido na quinta-feira.',
                     'horario_invalido_sexta' => 'Horário inválido na sexta-feira.',
                     'horario_invalido_sabado' => 'Horário inválido no sábado.',
-                    'conflito_aula_regular' => 'Conflito com aula regular em ' . htmlspecialchars($dia) . '.',
+                    'conflito_aula_regular' => 'Horario de aula regular em ' . htmlspecialchars($dia) . '.',
                     'bd' => 'Erro no banco de dados: ' . htmlspecialchars($detalhe),
                     'horario_proibido_segunda' => 'HAE não pode ser solicitada na segunda durante o horário de aula (19:00 às 22:30).',
                     'horario_proibido_terca' => 'HAE não pode ser solicitada na terça durante o horário de aula (19:00 às 22:30).',
