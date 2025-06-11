@@ -12,8 +12,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['tipo_usuario'])) {
         case 'diretor':
             header("Location: view/dashboard_coordenacao.php");
             exit;
-        case 'direcao':
-            header("Location: view/dashboard_coordenacao.php");
+        case 'secretaria':
+            header("Location: view/dashboard_secretaria.php");
             exit;
     }
 }

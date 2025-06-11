@@ -48,19 +48,8 @@ $nome = $_SESSION['nome'];
                 </div>
             <?php endif; ?>
 
-           <?php if (isset($_GET['sucesso'])): ?>
-    <div class="toast align-items-center text-bg-success border-0 show" role="alert">
-        <div class="d-flex">
-            <div class="toast-body">
-                Solicitação enviada com sucesso!
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
         </div>
     </div>
-<?php endif; ?>
-        </div>
-    </div>
-
     <!-- Cabeçalho -->
     <div class="header">
         <img src="../assets/logo-fatec_itapira.png" alt="Logo Fatec Itapira">
@@ -91,6 +80,21 @@ $nome = $_SESSION['nome'];
                 <p>Acompanhe suas inscrições e status</p>
             </div>
         </div>
+
+        <div class="menu-container">
+            <div class="menu-box" onclick="window.location.href='relatorio.php'">
+                <img src="../assets/icon-doc-gray.png" alt="Inscrição" class="menu-icon">
+                <h2>RELATÓRIO</h2>
+                <p>Realize seu relatório para HAE</p>
+            </div>
+
+            <div class="menu-box" onclick="window.location.href='acompanhar_relatorio.php'">
+                <img src="../assets/icon-com-gray.png" alt="Acompanhar" class="menu-icon">
+                <h2>ACOMPANHAR</h2>
+                <p>Acompanhe o status do seu relatório</p>
+            </div>
+        </div>
+
     </main>
 
     <!-- Rodapé fixo ao fim -->
