@@ -41,7 +41,7 @@ function iconeStatus($status) {
         .cabeca {
             text-align: center;
             margin-bottom: 40px;
-            background:rgb(126, 0, 0);
+            background:#c8102e;
             padding: 30px;
             border-radius: 8px;
             color: white;
