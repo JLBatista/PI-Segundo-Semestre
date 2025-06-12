@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edital_id'])) {
     <title>Ver Editais - Secretaria</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="estilo.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <style>
         .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);}
         h1 { color: #222; text-align: center; margin-bottom: 24px;}
