@@ -49,7 +49,7 @@ if ($_SESSION['tipo_usuario'] !== 'direcao') {
                 <p>Analise as inscrições e relatórios</p>
             </div>
 
-            <div class="menu-box" onclick="window.location.href='relatorio.php'">
+            <div class="menu-box" onclick="window.location.href='avalia_relatorio.php'">
                 <img src="../assets/icon-com-gray.png" alt="Relatório" class="menu-icon">
                 <h2>RELATÓRIO</h2>
                 <p>Visualize os relatórios do sistema</p>

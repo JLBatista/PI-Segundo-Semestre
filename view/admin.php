@@ -21,6 +21,31 @@ $nome = $_SESSION['nome'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Direção - Hora+</title>
     <link rel="stylesheet" href="estilo.css">
+    <style>
+
+      /* Garante que todos os cards tenham o mesmo tamanho */
+.linha-admin-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 32px; /* Espaço de 32px entre os cards */
+    margin-top: 40px;
+}
+
+.menu-box {
+    width: 300px; /* Tamanho fixo para todos os cards */
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.13);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 18px 18px 18px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+    </style>
 </head>
 <body>
     <!-- Cabeçalho -->
@@ -42,25 +67,28 @@ $nome = $_SESSION['nome'];
     <main class="main">
         <h1>Menu Administrador</h1>
         
-        <div class="menu-container">
-            <div class="menu-box" onclick="window.location.href='cadastro_professor.php'">
-                <img src="../assets/icon-doc-gray.png" alt="Analisar" class="menu-icon">
-                <h2>PROFESSOR</h2>
-                <p>Criar Login de Professor</p>
-            </div>
-
-            <div class="menu-box" onclick="window.location.href='cadastro_coordenador.php'">
-                <img src="../assets/icon-doc-gray.png" alt="Analisar" class="menu-icon"> <!-- Necessario alterar as imagens -->
-                <h2>COORDENAÇÃO</h2>
-                <p>Criar Login de Coordenador</p>
-            </div>
-
-            <div class="menu-box" onclick="window.location.href='cadastro_secretaria.php'">
-                <img src="../assets/icon-doc-gray.png" alt="Analisar" class="menu-icon">
+        <div class="linha-admin-cards">
+    <div class="menu-box" onclick="window.location.href='cadastro_professor.php'">
+        <img src="../assets/icon-doc-gray.png" alt="Analisar" class="menu-icon">
+        <h2>PROFESSOR</h2>
+        <p>Criar Login de Professor</p>
+    </div>
+    <div class="menu-box" onclick="window.location.href='cadastro_diretor.php'">
+        <img src="../assets/icon-doc-gray.png" alt="Analisar" class="menu-icon">
+        <h2>DIREÇÃO</h2>
+        <p>Criar Login de Diretor</p>
+    </div>
+    <div class="menu-box" onclick="window.location.href='cadastro_secretaria.php'">
+        <img src="../assets/icon-doc-gray.png" alt="Analisar" class="menu-icon">
         <h2>SECRETARIA</h2>
         <p>Criar Login de Secretaria</p>
     </div>
-        </div>
+    <div class="menu-box" onclick="window.location.href='controle_cadastro.php'">
+        <img src="../assets/icon-doc-gray.png" alt="Analisar" class="menu-icon">
+        <h2>USUÁRIOS</h2>
+        <p>Verifica os usuários cadastrados no banco do sistema</p>
+    </div>
+</div>
 
         
     </main>

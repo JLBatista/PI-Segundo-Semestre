@@ -3,6 +3,8 @@ session_start();
 
 include '../model/Usuario.php';
 include '../model/Professor.php';
+include '../model/Diretor.php';
+include '../model/Secretaria.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -26,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
          elseif ($dados['tipo_usuario'] == 'direcao') {
             header("Location: ../view/dashboard_coordenacao.php");
+        }
+        elseif ($dados['tipo_usuario'] == 'secretaria') {
+            header("Location: ../view/dashboard_secretaria.php");
         }
         exit;
         } else {

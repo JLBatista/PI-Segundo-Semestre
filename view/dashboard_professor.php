@@ -81,19 +81,20 @@ $nome = $_SESSION['nome'];
             </div>
         </div>
 
-        <div class="menu-container">
-            <div class="menu-box" onclick="window.location.href='relatorio.php'">
-                <img src="../assets/icon-doc-gray.png" alt="Inscrição" class="menu-icon">
-                <h2>RELATÓRIO</h2>
-                <p>Realize seu relatório para HAE</p>
+            <div class="menu-container">
+                <div class="menu-box" onclick="window.location.href='relatorio.php'">
+                    <img src="../assets/icon-doc-gray.png" alt="Inscrição" class="menu-icon">
+                    <h2>RELATÓRIO</h2>
+                    <p>Realize seu relatório para HAE</p>
             </div>
 
-            <div class="menu-box" onclick="window.location.href='acompanhar_relatorio.php'">
-                <img src="../assets/icon-com-gray.png" alt="Acompanhar" class="menu-icon">
-                <h2>ACOMPANHAR</h2>
-                <p>Acompanhe o status do seu relatório</p>
+                <div class="menu-box" onclick="window.location.href='tela_edital_professor.php'">
+                    <img src="../assets/icon-doc-gray.png" alt="Inscrição" class="menu-icon">
+                    <h2>EDITAIS</h2>
+                    <p>Confira aqui os editais publicados</p>
+                </div>
             </div>
-        </div>
+        
 
     </main>
 

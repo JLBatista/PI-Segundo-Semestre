@@ -3,6 +3,41 @@
 class Diretor {
     private $pdo;
 
+    public function getPdo() {
+    return $this->pdo;
+}
+    public function cadastrar($nome, $email, $senha)
+{
+    $pdo = $this->getPdo();
+
+    // Verifica se já existe usuário com este e-mail
+    $stmt = $pdo->prepare("SELECT id FROM usuario WHERE email = :email");
+    $stmt->execute([':email' => $email]);
+    if ($stmt->fetch()) {
+        return false; // Já existe usuário com este e-mail
+    }
+
+    // Cria usuário (senha sem criptografia)
+    $stmt = $pdo->prepare("INSERT INTO usuario (nome, email, senha, tipo_usuario) VALUES (:nome, :email, :senha, 'direcao')");
+    $ok = $stmt->execute([
+        ':nome' => $nome,
+        ':email' => $email,
+        ':senha' => $senha
+    ]);
+    if (!$ok) {
+        return false;
+    }
+
+    $usuario_id = $pdo->lastInsertId();
+
+    // Cria registro na tabela diretor (se existir)
+    if ($pdo->query("SHOW TABLES LIKE 'diretor'")->rowCount() > 0) {
+        $stmt = $pdo->prepare("INSERT INTO diretor (usuario_id) VALUES (:usuario_id)");
+        $stmt->execute([':usuario_id' => $usuario_id]);
+    }
+
+    return true;
+}
     public function __construct()
     {
         try {
@@ -148,6 +183,28 @@ class Diretor {
             ':status_final' => $status_final
         ]);
     }
+    public function listarRelatoriosHAE()
+{
+    $stmt = $this->pdo->prepare("
+        SELECT 
+            hd.id,
+            hd.solicitacao_hae_id,
+            hd.professor_id,
+            hd.resultados,
+            hd.arquivo_upload,
+            hd.status_final,
+            sh.tipo,
+            sh.curso,
+            u.nome AS nome_professor
+        FROM hae_deferidas hd
+        INNER JOIN solicitacao_hae sh ON sh.id = hd.solicitacao_hae_id
+        INNER JOIN professor p ON p.id = hd.professor_id
+        INNER JOIN usuario u ON u.id = p.usuario_id
+        ORDER BY hd.id DESC
+    ");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
     public function atualizarStatusSolicitacao($solicitacao_id, $novo_status) {
         $stmt = $this->pdo->prepare("

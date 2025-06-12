@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 require_once '../model/Professor.php';
 $professor = new Professor();
-
+$status_final = 'pendente'; // ou NULL
 $idProfessor = $professor->getIdProfessorPorUsuarioId($_SESSION['id']);
 $idSolicitacao = $_POST['solicitacao_hae_id'] ?? null;
 $resultado = $_POST['resultado'] ?? '';

@@ -3,10 +3,6 @@
 class Professor {
     private $pdo;
 
-    public function getPdo() {
-    return $this->pdo;
-}
-
     public function __construct()
     {
         try {
@@ -17,31 +13,45 @@ class Professor {
         }
     }
 
+    public function getPdo() {
+        return $this->pdo;
+    }
+
+    public function listarEditais()
+    {
+        $sql = "SELECT e.*, u.nome as secretaria_nome 
+                FROM edital e 
+                JOIN usuario u ON e.usuario_secretaria_id = u.id 
+                ORDER BY e.data_postagem DESC";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Cadastro completo: usuário, professor e carga horária
-   public function listarSolicitacoesDoProfessor($usuario_id)
-{
-    $stmt = $this->pdo->prepare("
-        SELECT 
-    sh.id, 
-    sh.tipo, 
-    sh.status, 
-    sh.curso, 
-    u.nome,
-    sh.metas,
-    sh.objetivos,
-    sh.justificativas,
-    sh.recursos,
-    sh.resultado,
-    sh.metodologia
-FROM solicitacao_hae sh
-JOIN professor p ON sh.professor_id = p.id
-JOIN usuario u ON p.usuario_id = u.id
-WHERE p.id = ?
-ORDER BY sh.id DESC
-    ");
-    $stmt->execute([$usuario_id]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    public function listarSolicitacoesDoProfessor($usuario_id)
+    {
+        $stmt = $this->pdo->prepare("
+            SELECT 
+                sh.id, 
+                sh.tipo, 
+                sh.status, 
+                sh.curso, 
+                u.nome,
+                sh.metas,
+                sh.objetivos,
+                sh.justificativas,
+                sh.recursos,
+                sh.resultado,
+                sh.metodologia
+            FROM solicitacao_hae sh
+            JOIN professor p ON sh.professor_id = p.id
+            JOIN usuario u ON p.usuario_id = u.id
+            WHERE p.id = ?
+            ORDER BY sh.id DESC
+        ");
+        $stmt->execute([$usuario_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function cadastrar($nome, $email, $senha, $rg, $diasAulas = [])
     {
@@ -133,15 +143,16 @@ ORDER BY sh.id DESC
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public function buscarSolicitacaoDeferida($idSolicitacao, $idProfessor) {
-    $sql = "SELECT metas, objetivos, justificativas 
-            FROM solicitacao_hae 
-            WHERE id = :id AND professor_id = :professor_id AND status = 'Deferido'";
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->execute([
-        ':id' => $idSolicitacao,
-        ':professor_id' => $idProfessor
-    ]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
+        $sql = "SELECT metas, objetivos, justificativas 
+                FROM solicitacao_hae 
+                WHERE id = :id AND professor_id = :professor_id AND status = 'Deferido'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            ':id' => $idSolicitacao,
+            ':professor_id' => $idProfessor
+        ]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
